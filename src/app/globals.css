@@ -2,11 +2,9 @@
   --bg: #f5f7f6;
   --fg: #15222b;
   --muted: #5f6e78;
-  --line: #d4dcda;
   --accent: #0f5c66;
   --dot: #a9bfc2;
   --glow: rgb(15 92 102 / 0.18);
-  --field: #ffffff;
   --gutter: 24px;
   color-scheme: light;
 }
@@ -16,11 +14,9 @@
     --bg: #07090b;
     --fg: #e4ebea;
     --muted: #8c9ba3;
-    --line: #243439;
     --accent: #63c4c8;
     --dot: #4a6b70;
     --glow: rgb(99 196 200 / 0.16);
-    --field: #121a1e;
     color-scheme: dark;
   }
 }
@@ -52,8 +48,7 @@ a {
   text-decoration: none;
 }
 
-a:focus-visible,
-button:focus-visible {
+a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -143,105 +138,6 @@ h1 {
 .soon {
   margin: 0.5rem 0 0;
   font-weight: 500;
-}
-
-.waitlist {
-  min-height: 3.25rem;
-}
-
-.waitlist form {
-  display: grid;
-  gap: 0.5rem;
-  justify-items: start;
-}
-
-.waitlist-joined {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-height: 3.25rem;
-  color: var(--accent);
-  font-weight: 500;
-  animation: pop 0.6s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-}
-
-@keyframes pop {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .waitlist-joined {
-    animation: none;
-  }
-}
-
-.waitlist-field {
-  display: flex;
-  align-items: center;
-  width: min(100%, 320px);
-  padding: 0.35rem 0.35rem 0.35rem 1rem;
-  border-radius: 999px;
-  background: var(--field);
-  border: 1px solid var(--line);
-}
-
-.waitlist-field:focus-within {
-  border-color: var(--accent);
-}
-
-.waitlist-field input {
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--fg);
-  font: inherit;
-}
-
-.waitlist-field input::placeholder {
-  color: var(--muted);
-}
-
-.waitlist-field button {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  border: 1px solid var(--fg);
-  background: transparent;
-  color: var(--fg);
-  cursor: pointer;
-}
-
-.waitlist-field button:disabled,
-.waitlist-field input:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-
-.waitlist-message {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 .footer {
