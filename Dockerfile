@@ -13,7 +13,10 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 ARG CATALOG_API_URL
+# Optional: the app the CTAs link to, so a dev deploy sends users to the dev app. Defaults to production.
+ARG APP_URL
 ENV CATALOG_API_URL=${CATALOG_API_URL}
+ENV NEXT_PUBLIC_APP_URL=${APP_URL}
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN test -n "$CATALOG_API_URL" || (echo "CATALOG_API_URL build argument is required" && exit 1)
 RUN pnpm build

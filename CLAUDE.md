@@ -2,7 +2,7 @@
 
 Marketing site for Leadgidi Enrich. Next.js 16 App Router, React 19, TypeScript strict, pnpm.
 Built as a fully static export (`output: 'export'`) and deployed to GitHub Pages on push to `main` (`.github/workflows/deploy.yml`, custom domain via `public/CNAME`).
-It also ships as a Docker image for Dokploy: `Dockerfile` builds the export (build argument `CATALOG_API_URL` is required, prices are baked in, so redeploy when the catalog changes) and serves `out/` with unprivileged nginx on port 8080. `nginx.conf` keeps it SEO-safe: relative redirects (no container port behind the proxy), `/index.html` 301s to its trailing-slash URL, real 404 status with `404.html`, `image/png` for the extensionless `/opengraph-image`, gzip, immutable cache only for hashed `/_next/static/`.
+It also ships as a Docker image for Dokploy: `Dockerfile` builds the export (build argument `CATALOG_API_URL` is required, prices are baked in, so redeploy when the catalog changes; optional `APP_URL` becomes `NEXT_PUBLIC_APP_URL`, the app the CTAs link to, defaulting to production) and serves `out/` with unprivileged nginx on port 8080. `nginx.conf` keeps it SEO-safe: relative redirects (no container port behind the proxy), `/index.html` 301s to its trailing-slash URL, real 404 status with `404.html`, `image/png` for the extensionless `/opengraph-image`, gzip, immutable cache only for hashed `/_next/static/`.
 
 ## Commands
 

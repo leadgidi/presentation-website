@@ -1,4 +1,5 @@
-const APP_URL = 'https://app.leadgidi.com';
+const PRODUCTION_APP_URL = 'https://app.leadgidi.com';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || PRODUCTION_APP_URL;
 const CONTACT_EMAIL = 'contact@leadgidi.com';
 const PRIMARY_CTA = 'Start for free';
 const SIGN_IN = 'Sign in';
