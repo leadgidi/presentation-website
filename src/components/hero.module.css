@@ -1,0 +1,111 @@
+.hero {
+  position: relative;
+  margin-top: calc(-1 * var(--header-height));
+}
+
+.sticky {
+  position: relative;
+  padding-top: calc(var(--header-height) + var(--space-6));
+  overflow: hidden;
+}
+
+
+.copy {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.title {
+  max-width: 14ch;
+  font-size: var(--text-display);
+  font-weight: 650;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 36ch;
+  margin-top: var(--space-3);
+  font-size: var(--text-lede);
+  color: var(--slate);
+  text-wrap: pretty;
+}
+
+.window {
+  position: relative;
+  max-width: 1240px;
+  margin: var(--space-6) auto 0;
+  padding-inline: var(--gutter);
+  transform-origin: 50% 0%;
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0.15;
+    filter: blur(14px);
+    translate: 0 0.35em;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    filter: blur(var(--reveal-blur));
+    translate: 0 var(--reveal-shift);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .word {
+    display: inline-block;
+    animation: word-in 1200ms var(--ease-out-expo) both;
+  }
+
+  .title > :nth-child(2) .word { animation-delay: 90ms; }
+  .title > :nth-child(3) .word { animation-delay: 180ms; }
+  .title > :nth-child(4) .word { animation-delay: 270ms; }
+  .title > :nth-child(5) .word { animation-delay: 360ms; }
+  .title > :nth-child(6) .word { animation-delay: 450ms; }
+
+  .lede {
+    animation: rise-in 1000ms var(--ease-out-expo) 420ms both;
+  }
+
+  .cta {
+    animation: rise-in 1000ms var(--ease-out-expo) 560ms both;
+  }
+
+  .window {
+    animation: rise-in 1400ms var(--ease-out-expo) 700ms both;
+  }
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .hero {
+    height: calc(100svh + 600px);
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+  }
+
+  .window {
+    transform: translateY(120px) scale(0.82);
+  }
+}
+
+@media (max-width: 899px) {
+  .sticky {
+    padding-bottom: var(--space-6);
+  }
+
+  .window {
+    height: 520px;
+    mask-image: linear-gradient(to bottom, black 80%, transparent);
+  }
+}

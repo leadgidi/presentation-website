@@ -1,0 +1,119 @@
+.frame {
+  background: var(--paper);
+  font-variant-numeric: tabular-nums;
+}
+
+.head {
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+}
+
+.controls {
+  display: grid;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 520px;
+}
+
+.billing {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  justify-self: center;
+  width: min(100%, 420px);
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--mist);
+}
+
+.option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 4px var(--space-1);
+  border-radius: 9px;
+  color: var(--slate);
+  font-size: var(--text-small);
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.option:has(input:checked) {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--control-shadow);
+}
+
+.option:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.saving {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--verified);
+}
+
+.tier {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--slate);
+  font-size: var(--text-small);
+}
+
+.credits {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.slider {
+  width: 100%;
+  margin-top: var(--space-1);
+  accent-color: var(--accent);
+}
+
+.plans {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plans > li + li {
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 860px) {
+  .plans {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .plans > li + li {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+}
+
+.note {
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--line);
+  color: var(--slate);
+  font-size: var(--text-small);
+  text-align: center;
+}

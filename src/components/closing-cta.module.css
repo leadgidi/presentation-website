@@ -1,0 +1,27 @@
+.frame {
+  padding: var(--space-6) var(--space-3);
+  isolation: isolate;
+}
+
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hatch-pattern);
+  mask-image: radial-gradient(ellipse 55% 60% at center, transparent 55%, black);
+}
+
+.title {
+  max-width: 16ch;
+  font-size: var(--text-title);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.railsUp {
+  --rails-height: calc(var(--space-7) * 2);
+  --rails-mask: none;
+}

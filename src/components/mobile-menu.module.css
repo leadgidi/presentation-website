@@ -1,0 +1,103 @@
+.menu {
+  display: flex;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background: var(--mist);
+}
+
+.icon,
+.icon::before {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.icon {
+  position: relative;
+  transform: translateY(-3px);
+}
+
+.icon::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+}
+
+.icon[data-open='true'] {
+  transform: translateY(0) rotate(45deg);
+}
+
+.icon[data-open='true']::before {
+  top: 0;
+  transform: rotate(-90deg);
+}
+
+.panel {
+  position: fixed;
+  inset: var(--header-height) 0 0 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-3) var(--gutter) var(--space-5);
+  background: var(--paper);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.panel[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.2s ease, transform 0.25s ease, visibility 0s;
+}
+
+.link {
+  display: block;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--line);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .menu {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panel[data-open='true'],
+  .icon,
+  .icon::before {
+    transition: none;
+  }
+}

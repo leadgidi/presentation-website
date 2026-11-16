@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { site } from '@/content/site';
 import './globals.css';
 
-const bricolage = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-sans' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans', axes: ['opsz'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -23,21 +23,31 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const organizationSchema = {
+const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: site.company,
-  url: site.url,
-  email: site.contactEmail,
-  description: site.seoDescription,
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: site.company,
+      url: site.url,
+      logo: `${site.url}${site.brand.markPng}`,
+      email: site.contactEmail,
+      description: site.seoDescription,
+    },
+    {
+      '@type': 'WebSite',
+      name: site.company,
+      url: site.url,
+    },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={bricolage.variable}>
+    <html lang="en" className={inter.variable}>
       <body>
         {children}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </body>
     </html>
   );

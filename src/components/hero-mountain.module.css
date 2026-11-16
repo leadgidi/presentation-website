@@ -1,0 +1,17 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 75%, transparent);
+}
+
+.mountain {
+  --summit-share: -41%;
+  position: absolute;
+  top: var(--summit-y, 60%);
+  left: 50%;
+  width: max(100%, 1260px);
+  height: auto;
+  translate: -50% var(--summit-share);
+}

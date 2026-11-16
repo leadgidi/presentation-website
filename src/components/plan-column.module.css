@@ -1,0 +1,134 @@
+.plan {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.plan[data-highlighted] {
+  background: color-mix(in srgb, var(--mist) 45%, var(--paper));
+}
+
+.nameRow {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.recommended {
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--on-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tagline {
+  margin-top: var(--space-2);
+  min-height: 3em;
+  font-size: var(--text-small);
+  color: var(--slate);
+}
+
+.price {
+  margin-top: var(--space-3);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.period {
+  margin-left: 4px;
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--slate);
+}
+
+.detail {
+  margin-top: 4px;
+  font-size: var(--text-small);
+  color: var(--slate);
+}
+
+.cta {
+  --button-fill: var(--card);
+  --button-lift: var(--control-shadow);
+  width: 100%;
+  min-height: 44px;
+  margin-top: var(--space-4);
+}
+
+
+
+.includes {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.includesLabel {
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.features {
+  display: grid;
+  gap: 12px;
+  margin-top: var(--space-2);
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-small);
+}
+
+.feature {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.feature::before {
+  content: '';
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(var(--line), var(--line)) center / 8px 1.5px no-repeat;
+}
+
+.feature:not([data-included]) {
+  color: color-mix(in srgb, var(--slate) 65%, transparent);
+}
+
+.feature[data-included]::before {
+  border: 1.5px solid var(--verified);
+  background: radial-gradient(circle, var(--verified) 0 2.5px, transparent 3px);
+}
+
+.feature[data-upcoming] {
+  color: var(--slate);
+}
+
+.feature[data-upcoming]::before {
+  border-color: var(--line);
+  background: none;
+}
+
+.upcoming {
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--mist);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--slate);
+}

@@ -1,0 +1,5 @@
+.image {
+  display: block;
+  width: auto;
+  height: var(--logo-height, 28px);
+}

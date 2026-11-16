@@ -1,0 +1,7 @@
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
+  mask-image: linear-gradient(to bottom, black 75%, transparent);
+}
