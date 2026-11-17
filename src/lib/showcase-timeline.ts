@@ -9,7 +9,7 @@ export type ShowcaseStage = 'typing' | 'pause' | 'searching' | 'done';
 export type ShowcaseFrame = { personIndex: number; typed: number; stage: ShowcaseStage; durationMs: number };
 
 function inputFields(person: ShowcasePerson): string[] {
-  return [person.name, person.company];
+  return [person.firstName, person.lastName, person.company];
 }
 
 function personFrames(person: ShowcasePerson, personIndex: number): ShowcaseFrame[] {

@@ -19,6 +19,10 @@
   --hatch: color-mix(in srgb, var(--ink) 6%, transparent);
   --hatch-pattern: repeating-linear-gradient(-45deg, transparent 0 7px, var(--hatch) 7px 8px);
   --window-dot: color-mix(in srgb, var(--ink) 14%, transparent);
+  --app-sidebar: #f9fafb;
+  --app-surface: #f6f7f9;
+  --app-surface-strong: #eceff3;
+  --app-info: #1760cf;
   --card-shadow: 0 1px 2px rgb(21 23 26 / 0.06), 0 24px 48px -24px rgb(21 23 26 / 0.22);
   --showcase-shadow: 0 1px 2px rgb(21 23 26 / 0.05), 0 12px 24px -12px rgb(21 23 26 / 0.10), 0 40px 80px -40px rgb(21 23 26 / 0.18);
   --control-shadow: 0 1px 3px rgb(21 23 26 / 0.12);
