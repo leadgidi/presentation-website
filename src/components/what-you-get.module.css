@@ -29,6 +29,13 @@
   padding: var(--space-4) var(--space-3) 0;
 }
 
+.caption {
+  margin-bottom: var(--space-2);
+  color: var(--slate);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
 .thread {
   display: grid;
   gap: var(--space-3);

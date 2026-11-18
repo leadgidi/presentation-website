@@ -13,7 +13,7 @@ export function Faq() {
           </div>
           <div className={styles.items}>
             {faq.items.map((item) => (
-              <details key={item.question} className={`${styles.item} text-reveal`}>
+              <details key={item.question} className={styles.item}>
                 <summary className={styles.question}>{item.question}</summary>
                 <p className={styles.answer}>{item.answer}</p>
               </details>

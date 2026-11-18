@@ -21,7 +21,7 @@ function featureRows(plan: PlanPricing, allFeatures: string[], creditsLine: stri
 function FeatureList({ rows }: { rows: FeatureRow[] }) {
   return (
     <div className={styles.includes}>
-      <p className={styles.includesLabel}>{pricingCopy.includesLabel}</p>
+      <p className={styles.includesLabel}>{pricingCopy.planDetailsLabel}</p>
       <ul className={styles.features}>
         {rows.map((row) => (
           <li key={row.label} className={styles.feature} data-included={row.isIncluded || undefined} data-upcoming={row.isUpcoming || undefined}>

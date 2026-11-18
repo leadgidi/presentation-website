@@ -2,11 +2,17 @@
 
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { site } from '@/content/site';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import styles from './mobile-menu.module.css';
 
 const PANEL_ID = 'mobile-menu-panel';
+const DESKTOP_QUERY = '(min-width: 900px)';
+const OUTSIDE_MENU = 'main, body > footer';
+const MENU_OPEN_ATTRIBUTE = 'data-menu-open';
 
-function useCloseOnEscape(isOpen: boolean, close: () => void, toggle: RefObject<HTMLButtonElement | null>) {
+type ElementRef<T extends HTMLElement> = RefObject<T | null>;
+
+function useCloseOnEscape(isOpen: boolean, close: () => void, toggle: ElementRef<HTMLButtonElement>) {
   useEffect(() => {
     if (!isOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -19,9 +25,25 @@ function useCloseOnEscape(isOpen: boolean, close: () => void, toggle: RefObject<
   }, [isOpen, close, toggle]);
 }
 
-function MenuPanel({ isOpen, onNavigate }: { isOpen: boolean; onNavigate: () => void }) {
+function useContainFocus(isOpen: boolean, panel: ElementRef<HTMLElement>) {
+  useEffect(() => {
+    if (!isOpen) return;
+    const outside = Array.from(document.querySelectorAll<HTMLElement>(OUTSIDE_MENU));
+    outside.forEach((element) => (element.inert = true));
+    document.documentElement.setAttribute(MENU_OPEN_ATTRIBUTE, '');
+    panel.current?.querySelector('a')?.focus();
+    return () => {
+      outside.forEach((element) => (element.inert = false));
+      document.documentElement.removeAttribute(MENU_OPEN_ATTRIBUTE);
+    };
+  }, [isOpen, panel]);
+}
+
+type MenuPanelProps = { isOpen: boolean; onNavigate: () => void; panelRef: ElementRef<HTMLElement> };
+
+function MenuPanel({ isOpen, onNavigate, panelRef }: MenuPanelProps) {
   return (
-    <nav id={PANEL_ID} aria-label={site.mobileNavigationLabel} className={styles.panel} data-open={isOpen}>
+    <nav ref={panelRef} id={PANEL_ID} aria-label={site.mobileNavigationLabel} className={styles.panel} data-open={isOpen}>
       <ul>
         {site.navigation.map((item) => (
           <li key={item.href}>
@@ -44,10 +66,14 @@ function MenuPanel({ isOpen, onNavigate }: { isOpen: boolean; onNavigate: () => 
 }
 
 export function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isToggledOpen, setIsToggledOpen] = useState(false);
+  const isDesktop = useMediaQuery(DESKTOP_QUERY);
+  const isOpen = isToggledOpen && !isDesktop;
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const close = useCallback(() => setIsOpen(false), []);
+  const panelRef = useRef<HTMLElement>(null);
+  const close = useCallback(() => setIsToggledOpen(false), []);
   useCloseOnEscape(isOpen, close, toggleRef);
+  useContainFocus(isOpen, panelRef);
 
   return (
     <div className={styles.menu}>
@@ -57,12 +83,12 @@ export function MobileMenu() {
         className={styles.toggle}
         aria-expanded={isOpen}
         aria-controls={PANEL_ID}
-        aria-label={isOpen ? site.closeMenu : site.openMenu}
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={() => setIsToggledOpen(!isOpen)}
       >
         <span className={styles.icon} data-open={isOpen} aria-hidden="true" />
+        {site.mobileNavigationLabel}
       </button>
-      <MenuPanel isOpen={isOpen} onNavigate={close} />
+      <MenuPanel isOpen={isOpen} onNavigate={close} panelRef={panelRef} />
     </div>
   );
 }

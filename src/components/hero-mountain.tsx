@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { MOUNTAIN_SIZES, mountainSrcSet } from '@/lib/mountain-sources';
 import styles from './hero-mountain.module.css';
 
 const SUMMIT_ANCHOR = '[data-summit-anchor]';
@@ -35,7 +36,15 @@ export function HeroMountain(picture: Picture) {
 
   return (
     <div className={styles.layer} aria-hidden="true">
-      <img ref={imageRef} className={styles.mountain} {...picture} alt="" />
+      <img
+        ref={imageRef}
+        className={styles.mountain}
+        {...picture}
+        srcSet={mountainSrcSet(picture)}
+        sizes={MOUNTAIN_SIZES}
+        alt=""
+        fetchPriority="high"
+      />
     </div>
   );
 }

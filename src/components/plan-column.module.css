@@ -103,11 +103,11 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: linear-gradient(var(--line), var(--line)) center / 8px 1.5px no-repeat;
+  background: linear-gradient(var(--slate), var(--slate)) center / 8px 1.5px no-repeat;
 }
 
 .feature:not([data-included]) {
-  color: color-mix(in srgb, var(--slate) 65%, transparent);
+  color: var(--slate);
 }
 
 .feature[data-included]::before {

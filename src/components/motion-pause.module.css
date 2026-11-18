@@ -1,0 +1,34 @@
+.button {
+  display: grid;
+  place-items: center;
+  width: var(--tap-target);
+  height: var(--tap-target);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover {
+  background: var(--button-soft-hover);
+}
+
+.button:active {
+  background: var(--button-soft-active);
+}
+
+.button svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    display: none;
+  }
+}

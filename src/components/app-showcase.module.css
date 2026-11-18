@@ -23,6 +23,24 @@
   background: var(--window-dot);
 }
 
+.window .pause {
+  position: absolute;
+  top: -2px;
+  right: 4px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--slate);
+}
+
+.window .pause:hover {
+  background: var(--app-surface-strong);
+  color: var(--ink);
+}
+
+.window[data-paused] * {
+  animation-play-state: paused;
+}
+
 .body {
   display: grid;
   height: 620px;
@@ -254,7 +272,7 @@
   height: 36px;
   padding-inline: 20px;
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--ink) 45%, var(--card));
+  background: var(--accent-hover);
   color: var(--card);
   font-weight: 500;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease;
@@ -310,7 +328,7 @@
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  color: color-mix(in srgb, var(--slate) 70%, transparent);
+  color: var(--slate);
 }
 
 .field:nth-child(3) {
@@ -345,7 +363,7 @@
   margin-left: 22px;
   border: 1px dashed var(--line);
   border-radius: 12px;
-  color: color-mix(in srgb, var(--slate) 70%, transparent);
+  color: var(--slate);
 }
 
 .formFooter {

@@ -2,6 +2,7 @@ import { SectionHeading } from '@/components/section-heading';
 import { payPerResult } from '@/content/home';
 import { site } from '@/content/site';
 import { ArrowIcon } from './arrow-icon';
+import { PausableRegion } from './motion-pause';
 import styles from './pay-per-result.module.css';
 
 const TITLE_ID = 'pay-per-result-title';
@@ -43,14 +44,16 @@ function FeedRow({ people }: { people: Person[] }) {
 
 function ResultFeed() {
   return (
-    <figure className={styles.feed}>
-      <figcaption className="visually-hidden">{feed.caption}</figcaption>
-      <div className={styles.rows} aria-hidden="true">
-        {splitIntoRows(feed.people).map((people) => (
-          <FeedRow key={people[0].name} people={people} />
-        ))}
-      </div>
-    </figure>
+    <PausableRegion className={styles.feed} buttonClassName={styles.pause}>
+      <figure>
+        <figcaption className={styles.caption}>{feed.caption}</figcaption>
+        <div className={styles.rows} aria-hidden="true">
+          {splitIntoRows(feed.people).map((people) => (
+            <FeedRow key={people[0].name} people={people} />
+          ))}
+        </div>
+      </figure>
+    </PausableRegion>
   );
 }
 

@@ -5,8 +5,14 @@
 }
 
 .frameHead {
-  padding: var(--space-5) var(--space-3);
+  padding: var(--space-4) var(--space-3);
   border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 640px) {
+  .frameHead {
+    padding-block: var(--space-5);
+  }
 }
 
 .stage {
@@ -14,8 +20,9 @@
 }
 
 .visual {
-  padding: var(--space-4) var(--space-3);
-  border-bottom: 1px solid var(--line);
+  display: none;
+  padding: var(--space-4);
+  border-right: 1px solid var(--line);
   background: var(--hatch-pattern);
 }
 
@@ -24,12 +31,12 @@
 }
 
 .way {
+  position: relative;
   display: grid;
   gap: var(--space-1);
   padding: var(--space-4) var(--space-3);
   border-left: 2px solid transparent;
   color: var(--slate);
-  cursor: pointer;
   transition:
     color 300ms ease,
     border-color 300ms ease;
@@ -90,6 +97,10 @@
 .wayBody {
   max-width: 40ch;
   color: var(--slate);
+}
+
+.inlineCard {
+  margin-top: var(--space-2);
 }
 
 .card {
@@ -380,15 +391,53 @@
   }
 }
 
+@media (max-width: 480px) {
+  .form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .submit {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .sheetGrid tr > :nth-child(3) {
+    display: none;
+  }
+
+  .sheetGrid tr > :last-child {
+    width: 58%;
+  }
+
+  .sheetGrid td {
+    height: auto;
+    padding-block: 6px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (min-width: 960px) {
   .stage {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .visual {
-    padding: var(--space-4);
-    border-right: 1px solid var(--line);
-    border-bottom: 0;
+    display: block;
+  }
+
+  .inlineCard {
+    display: none;
+  }
+
+  .way {
+    cursor: pointer;
+  }
+
+  .wayButton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
   }
 
   .sticky {

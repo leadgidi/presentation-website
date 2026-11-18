@@ -13,6 +13,28 @@
 .feed {
   --feed-height: 320px;
 
+  position: relative;
+  min-width: 0;
+}
+
+.caption {
+  min-height: var(--tap-target);
+  padding-right: calc(var(--tap-target) + var(--space-2));
+  color: var(--slate);
+  font-size: var(--text-small);
+  text-wrap: pretty;
+}
+
+.pause {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.rows {
+  display: grid;
+  gap: 12px;
+  padding-block: var(--space-4);
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: auto var(--feed-height);
@@ -20,12 +42,6 @@
     linear-gradient(90deg, transparent, black 8%, black 92%, transparent),
     linear-gradient(transparent, black 12%, black 88%, transparent);
   mask-composite: intersect;
-}
-
-.rows {
-  display: grid;
-  gap: 12px;
-  padding-block: var(--space-4);
 }
 
 .row {
@@ -154,7 +170,15 @@
   }
 }
 
+.feed[data-paused] .row {
+  animation-play-state: paused;
+}
 
-.row:nth-child(odd) {
+.row:nth-child(odd) .card {
+  border-color: color-mix(in srgb, var(--line) 40%, transparent);
+  box-shadow: none;
+}
+
+.row:nth-child(odd) .avatar {
   opacity: 0.6;
 }

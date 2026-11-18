@@ -44,21 +44,31 @@ function Preview({ titles, panes, activeIndex }: { titles: string[]; panes: Reac
   );
 }
 
-type WayStepProps = { way: Way; isActive: boolean; onSelect: () => void };
-
-function WayStep({ way, isActive, onSelect }: WayStepProps) {
+function InlinePreview({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <li className={styles.way} data-active={isActive || undefined} onClick={onSelect}>
+    <figure className={`${styles.card} ${styles.inlineCard}`}>
+      <figcaption className="visually-hidden">{title}</figcaption>
+      <div className={styles.screen}>{children}</div>
+    </figure>
+  );
+}
+
+type WayStepProps = { way: Way; pane: ReactNode; isActive: boolean; onSelect: () => void };
+
+function WayStep({ way, pane, isActive, onSelect }: WayStepProps) {
+  return (
+    <li className={styles.way} data-active={isActive || undefined}>
       <p className={styles.wayLabel}>
         <WayIcon name={way.icon} className={styles.wayIcon} />
         {way.name}
       </p>
       <h3 className={styles.wayTitle}>
-        <button type="button" className={styles.wayButton} aria-pressed={isActive}>
+        <button type="button" className={styles.wayButton} aria-pressed={isActive} onClick={onSelect}>
           {way.title}
         </button>
       </h3>
       <p className={styles.wayBody}>{way.body}</p>
+      <InlinePreview title={way.windowTitle}>{pane}</InlinePreview>
     </li>
   );
 }
@@ -72,7 +82,7 @@ export function WaysInScroll({ ways, panes }: WaysInScrollProps) {
       <Preview titles={ways.map((way) => way.windowTitle)} panes={panes} activeIndex={activeIndex} />
       <ol ref={listRef} className={styles.ways}>
         {ways.map((way, index) => (
-          <WayStep key={way.name} way={way} isActive={index === activeIndex} onSelect={() => setActiveIndex(index)} />
+          <WayStep key={way.name} way={way} pane={panes[index]} isActive={index === activeIndex} onSelect={() => setActiveIndex(index)} />
         ))}
       </ol>
     </div>

@@ -1,11 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { ShowcasePerson, appPreview, showcase } from '@/content/showcase';
 import { useInView } from '@/hooks/use-in-view';
 import { useTimeline } from '@/hooks/use-timeline';
 import { ShowcaseFrame, buildFrames, typedValues } from '@/lib/showcase-timeline';
 import { AppIcon } from './app-icon';
+import { PauseButton } from './motion-pause';
 import styles from './app-showcase.module.css';
 
 const FRAMES = buildFrames(showcase.people);
@@ -213,11 +214,14 @@ function TitleBar() {
 
 export function AppShowcase() {
   const windowRef = useRef<HTMLElement>(null);
-  const frame = FRAMES[useTimeline(DURATIONS, useInView(windowRef))];
+  const [isPaused, setIsPaused] = useState(false);
+  const isInView = useInView(windowRef);
+  const frame = FRAMES[useTimeline(DURATIONS, isInView && !isPaused)];
 
   return (
-    <figure ref={windowRef} className={styles.window} aria-label={showcase.caption}>
+    <figure ref={windowRef} className={styles.window} aria-label={showcase.caption} data-paused={isPaused || undefined}>
       <TitleBar />
+      <PauseButton isPaused={isPaused} onToggle={() => setIsPaused((current) => !current)} className={styles.pause} />
       <div className={styles.body} aria-hidden="true">
         <Sidebar />
         <div className={styles.main}>

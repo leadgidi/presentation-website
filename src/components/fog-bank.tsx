@@ -4,6 +4,7 @@ import { RefObject, useEffect, useRef } from 'react';
 import { useReducedMotion } from 'motion/react';
 import { useInView } from '@/hooks/use-in-view';
 import { blowWind, createFogBank, FogBank as Bank, FogDensity, Point, renderFogBank, resizeFogBank, stepFogBank } from '@/lib/fog';
+import { useMotionPaused } from './motion-pause';
 import styles from './fog-bank.module.css';
 
 const MILLISECONDS_PER_SECOND = 1000;
@@ -91,7 +92,8 @@ export function FogBank({ sprite, density = 'light' }: FogBankProps) {
   const bankRef = useFogBank(canvasRef, sprite, density);
   const isInView = useInView(canvasRef);
   const prefersReducedMotion = useReducedMotion();
-  const isAnimated = isInView && !prefersReducedMotion;
+  const isPaused = useMotionPaused();
+  const isAnimated = isInView && !prefersReducedMotion && !isPaused;
 
   useEffect(() => {
     const canvas = canvasRef.current;

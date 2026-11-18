@@ -30,7 +30,7 @@
   max-width: 36ch;
   margin-top: var(--space-3);
   font-size: var(--text-lede);
-  color: var(--slate);
+  color: var(--slate-strong);
   text-wrap: pretty;
 }
 

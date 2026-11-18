@@ -36,10 +36,10 @@ export const DISPLAY_CURRENCY = 'usd';
 export const publishedPlans: PublishedPlan[] = [
   { code: 'free-plan', tagline: 'Try it on your own list.', isFree: true, isHighlighted: false },
   { code: 'starter', tagline: 'Buy credits once or subscribe and save.', isFree: false, isHighlighted: true },
-  { code: 'business', tagline: 'Everything in Starter, built for teams.', isFree: false, isHighlighted: false },
+  { code: 'business', tagline: 'Everything in Starter. Team accounts are coming soon.', isFree: false, isHighlighted: false },
 ];
 
-// Seeded on the Business plan in the backend but not enforced anywhere in code yet.
+// Teams is seeded on Business but not enforced by the backend, so it shows as upcoming.
 export const UPCOMING_FEATURE_CODES = ['teams'];
 
 // LinkedIn URLs are already returned on every plan, so listing this as a Business extra would mislead.

@@ -1,8 +1,8 @@
 import { sectionIds, site } from '@/content/site';
 
 export const hero = {
-  title: 'Every contact, completed.',
-  lede: 'Name and company in. Verified work email out.',
+  title: 'Turn names into verified work emails.',
+  lede: 'Send a name and company, get the work email, phone and title we can find.',
   backdrop: {
     mountain: { src: '/hero/mountain-ridge.webp', width: 3200, height: 2134 },
     smoke: '/hero/smoke.webp',
@@ -11,7 +11,7 @@ export const hero = {
 
 export const whatYouGet = {
   id: sectionIds.product,
-  title: 'More than an email.',
+  title: 'Email, phone, title and company in one record.',
   lede: 'Full B2B contact enrichment, in one run.',
   points: ['Verified work email, catch-all flagged', 'Job title, phones and LinkedIn', 'Company website, country and size'],
   record: {
@@ -37,7 +37,7 @@ export const whatYouGet = {
 export const payPerResult = {
   title: 'Only pay for what we find.',
   lede: 'No match, no charge. Credits come back automatically.',
-  body: 'Every contact in a run is either found and charged one credit, or not found and refunded when the run ends.',
+  body: "Each contact costs one credit when found. Credits for contacts we can't find come back when the run ends.",
   feed: {
     photoSize: 32,
     caption: 'Example results: found contacts cost one credit, contacts with no match are refunded',
@@ -64,7 +64,7 @@ export const payPerResult = {
 
 export const waysIn = {
   id: sectionIds.developers,
-  title: 'Works the way you do.',
+  title: 'Three ways to send contacts.',
   lede: 'Type a few names, upload a list or call the API.',
   ways: [
     {
@@ -144,15 +144,15 @@ export const waysIn = {
 
 export const pricingCopy = {
   id: sectionIds.pricing,
-  title: 'Pay for results, not rows.',
-  lede: 'Start free. One credit per contact found.',
+  title: 'Start free, then buy credits as you need them.',
+  lede: 'One credit per contact found.',
   billingLegend: 'Billing',
   creditsLabel: 'Credits',
   perContact: 'per contact found',
   creditsIncluded: 'credits',
   freePrice: '$0',
   freeCreditsSuffix: 'credits included',
-  includesLabel: 'Includes:',
+  planDetailsLabel: 'Plan details',
   upcomingLabel: 'Coming soon',
   recommendedLabel: 'Recommended',
   buyCreditsFeature: 'Buy more credits, once or by subscription',
@@ -164,7 +164,7 @@ export const pricingCopy = {
 
 export const faq = {
   id: sectionIds.faq,
-  title: 'Questions, answered.',
+  title: 'Questions about data, credits and files.',
   items: [
     {
       question: 'What do I need to send for each person?',
@@ -210,4 +210,5 @@ export const faq = {
 export const closing = {
   title: (freeCredits: string) => `Your first ${freeCredits} contacts are on us.`,
   lede: 'Create an account, upload a list and see what comes back.',
+  contactCta: 'Email us',
 };

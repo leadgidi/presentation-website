@@ -3,13 +3,17 @@
   --mist: #eef2f6;
   --ink: #15171a;
   --slate: #5f6368;
+  --slate-strong: #45494e;
   --line: #dde3ea;
   --accent: #15171a;
   --accent-soft: #e3e9f0;
   --on-accent: #ffffff;
   --accent-hover: #34373c;
+  --accent-active: var(--slate);
   --button-soft: color-mix(in srgb, var(--ink) 6%, var(--paper));
   --button-soft-hover: color-mix(in srgb, var(--ink) 11%, var(--paper));
+  --button-soft-active: color-mix(in srgb, var(--ink) 16%, var(--paper));
+  --tap-target: 44px;
   --verified: #167a52;
   --verified-soft: #dff2e8;
   --sky-top: #c8d0d9;
@@ -104,6 +108,10 @@ ol,
 ul {
   padding: 0;
   list-style: none;
+}
+
+html[data-menu-open] {
+  overflow: hidden;
 }
 
 a {
@@ -258,6 +266,10 @@ a {
   background: var(--accent-hover);
 }
 
+.button-primary:active {
+  background: var(--accent-active);
+}
+
 .button-secondary {
   background: var(--button-soft);
   color: var(--ink);
@@ -267,10 +279,20 @@ a {
   background: var(--button-soft-hover);
 }
 
+.button-secondary:active {
+  background: var(--button-soft-active);
+}
+
 .button-small {
-  min-height: 38px;
+  min-height: var(--tap-target);
   padding-inline: 16px;
   font-size: 0.9375rem;
+}
+
+@media (min-width: 900px) {
+  .button-small {
+    min-height: 38px;
+  }
 }
 
 .button-outline {
@@ -285,6 +307,10 @@ a {
   box-shadow:
     inset 0 0 0 1px var(--button-border-hover, var(--slate)),
     var(--button-lift, 0 0 #0000);
+}
+
+.button-outline:active {
+  background: var(--button-soft);
 }
 
 .button-row {
@@ -334,7 +360,7 @@ a {
 @media (max-width: 640px) {
   :root {
     --gutter: 16px;
-    --space-7: 5rem;
+    --space-7: 3.5rem;
   }
 }
 
@@ -348,28 +374,10 @@ a {
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .section-title,
-    .section-lede,
-    .text-reveal {
+    .section-title {
       animation: text-reveal linear both;
       animation-timeline: view();
       animation-range: entry 0% cover 40%;
-    }
-
-    .section-lede {
-      animation-range: entry 20% cover 45%;
-    }
-
-    .text-reveal:nth-child(2) {
-      animation-range: entry 15% cover 45%;
-    }
-
-    .text-reveal:nth-child(3) {
-      animation-range: entry 30% cover 50%;
-    }
-
-    .text-reveal:nth-child(n + 4) {
-      animation-range: entry 45% cover 55%;
     }
   }
 }

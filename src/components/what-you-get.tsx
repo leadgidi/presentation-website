@@ -7,8 +7,8 @@ const { record } = whatYouGet;
 
 function ContactRecord() {
   return (
-    <figure className={`showcase-panel ${styles.showcase} text-reveal`}>
-      <figcaption className="visually-hidden">{record.caption}</figcaption>
+    <figure className={`showcase-panel ${styles.showcase}`}>
+      <figcaption className={styles.caption}>{record.caption}</figcaption>
       <RecordPlayback className={styles.thread}>
         <p className={styles.request}>{record.request}</p>
         <div className={styles.status}>
@@ -54,7 +54,7 @@ export function WhatYouGet() {
           <SectionHeading id={`${whatYouGet.id}-title`} title={whatYouGet.title} lede={whatYouGet.lede} />
           <ul className={styles.points}>
             {whatYouGet.points.map((point) => (
-              <li key={point} className={`${styles.point} text-reveal`}>
+              <li key={point} className={styles.point}>
                 {point}
               </li>
             ))}

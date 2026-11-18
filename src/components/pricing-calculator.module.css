@@ -5,8 +5,14 @@
 
 .head {
   gap: var(--space-4);
-  padding: var(--space-6) var(--space-3) var(--space-5);
+  padding: var(--space-4) var(--space-3);
   border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 640px) {
+  .head {
+    padding-block: var(--space-6) var(--space-5);
+  }
 }
 
 .controls {
@@ -35,7 +41,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
+  min-height: var(--tap-target);
   padding: 4px var(--space-1);
   border-radius: 9px;
   color: var(--slate);
@@ -43,6 +49,12 @@
   font-weight: 500;
   line-height: 1.2;
   cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.option:hover {
+  background: var(--button-soft-hover);
+  color: var(--ink);
 }
 
 .option input {
@@ -83,9 +95,49 @@
 }
 
 .slider {
+  --thumb-size: 28px;
+  --track-height: 4px;
+  --track-color: color-mix(in srgb, var(--ink) 25%, var(--paper));
+
   width: 100%;
-  margin-top: var(--space-1);
-  accent-color: var(--accent);
+  height: var(--tap-target);
+  margin: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: var(--track-height);
+  border-radius: var(--radius-pill);
+  background: var(--track-color);
+}
+
+.slider::-moz-range-track {
+  height: var(--track-height);
+  border-radius: var(--radius-pill);
+  background: var(--track-color);
+}
+
+.slider::-webkit-slider-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+  border: 3px solid var(--card);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--control-shadow);
+  appearance: none;
+}
+
+.slider::-moz-range-thumb {
+  box-sizing: border-box;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border: 3px solid var(--card);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--control-shadow);
 }
 
 .plans {
@@ -97,6 +149,12 @@
 
 .plans > li + li {
   border-top: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option {
+    transition: none;
+  }
 }
 
 @media (min-width: 860px) {

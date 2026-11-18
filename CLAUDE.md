@@ -72,7 +72,7 @@ The page's main job is to rank for B2B contact enrichment searches and share wel
 - Looping animations run only while visible (`useInView`). The `h1` is never hidden by an entrance animation (LCP).
 - The hero is a sticky scroll stage driven by Motion (`hero-scroll.tsx`, `useScroll` + `useSpring`): first the copy sinks behind the mountain layer (rendered between copy and window), then the app window rises and grows. Desktop only; disabled for reduced motion.
 - The header is transparent only while the page is at the very top (`header-shell.tsx`, passive scroll listener) and solid with a hairline bottom border (no shadow) as soon as the user scrolls; its Start for free button stays hidden while the hero CTA is on screen (`data-hero-cta-visible`), so the rising app window never shows through the nav; the hero sits under the header via a negative top margin.
-- Text motion is CSS only: the hero `h1` words sharpen in from a blur on load (never from opacity 0), then lede, CTA and window rise in. Section titles, ledes and content items (`.section-title`, `.section-lede`, `.text-reveal` on steps, cards, FAQ items) are scrubbed by scroll via `animation-timeline: view()` inside `@supports`, so browsers without it show static text. Sibling items stagger through `nth-child` animation ranges.
+- Text motion is CSS only: the hero `h1` words sharpen in from a blur on load (never from opacity 0), then lede, CTA and window rise in. Only section titles (`.section-title`) are scrubbed by scroll via `animation-timeline: view()` inside `@supports`, so browsers without it show static text; ledes, items, FAQ rows and CTAs render static. Every looping animation (result marquee, hero app window, footer fog) has a `MotionPause` pause/play button, hidden under reduced motion. On touch devices the footer fog is light so the wordmark shows without a pointer, and below 960px each Developers step shows its preview inline.
 - Section headings use `SectionHeading`: one `h2` with a dark title sentence and a muted continuation (no separate lede paragraph). The example record sits in a large rounded panel and plays once when scrolled into view (`record-playback.tsx`: request bubble, "Enriching" shimmer, then the card rises; the server-rendered state is the finished record). The pay-per-result section shows a CSS-only marquee of result cards (found = 1 credit, no match = refunded), paused for reduced motion and skipped off-screen with `content-visibility`.
 - Below the hero, the first sections sit on a faint topographic contour backdrop (`.contour-backdrop`, `public/backdrop/contours.svg`, generated once as static smooth closed curves around a summit, masked so it shows only at the side edges, never behind content) so the mountain theme carries down the page.
 - The Developers section (`ways-in.tsx`, `ways-in-scroll.tsx`) follows a bordered frame: centered heading band, sticky fixed-size device screen (light bezel) on a hatched left column showing a web results list, a spreadsheet whose work_email cells fill in, or a JSON entry response highlighted by `src/lib/json-tokens.ts`, steps (icon label, title, body) on the right whose active step marks the column divider. Steps are clickable buttons and also follow scroll.
@@ -85,6 +85,7 @@ The page's main job is to rank for B2B contact enrichment searches and share wel
 ## Styling
 
 - CSS Modules per component plus tokens in `globals.css`. No Tailwind, CSS-in-JS or inline styles.
+- Inter (`layout.tsx`, via `next/font`) matches the app dashboard and the Stripe checkout font, so the site, app and checkout read as one product.
 - Colors and spacing come from CSS custom properties on `:root`. The site is light-only by design; do not add a dark theme.
 - Class names are kebab-case; state modifiers use the `is-` prefix (`is-fading`).
 - Mobile-first; check layout at phone width with no horizontal scroll.
@@ -93,3 +94,18 @@ The page's main job is to rank for B2B contact enrichment searches and share wel
 ## Dependencies
 
 Keep the dependency list minimal. Prefer platform APIs over new packages; ask before adding any.
+
+<!-- antislop:start -->
+## antislop
+For UI, copy, people, mobile layout, or code comments work, read these installed skill files directly (use these paths even if a same-named global skill exists):
+- Core filter, always on: `antislop`: `.claude/skills/antislop/SKILL.md`
+- UI / visual: `antislop-ui`: `.claude/skills/antislop-ui/SKILL.md`
+- Copy & text: `antislop-copywriting`: `.claude/skills/antislop-copywriting/SKILL.md`
+- People: `antislop-human`: `.claude/skills/antislop-human/SKILL.md`
+- Mobile / responsive: `antislop-layoutmobile`: `.claude/skills/antislop-layoutmobile/SKILL.md`
+- Code comments: `antislop-code`: `.claude/skills/antislop-code/SKILL.md`
+Before starting, follow the core's "Two Usage Modes" section in strict order: explicit session instruction first, then global preference, then ask. A session instruction always wins. For a resolved mode, say `antislop active: <mode> (session override).` or `antislop active: <mode> (global preference).` once before presenting findings or making edits, using the actual mode and source. Acknowledging the user's request without naming the source does not replace this notice.
+Only an explicit choice of antislop during or after selects a session mode. A request to review, audit, or avoid file edits does not select a mode; read the global preference in that case. Another skill's mode does not select antislop's mode.
+If the mode is unresolved, ask during/after and end the response; wait for the answer before any UI review, planning, or concept. For read-only tasks, put the active-mode notice only at the start of the final answer, never in progress messages. For editing tasks, announce before the first edit and omit it from the final answer.
+To update antislop later: `npx antislop-ai --update`, or run `npx antislop-ai` and pick Overwrite them.
+<!-- antislop:end -->

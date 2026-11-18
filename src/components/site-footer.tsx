@@ -1,7 +1,9 @@
 import { hero } from '@/content/home';
 import { site } from '@/content/site';
-import { FogBank } from './fog-bank';
+import { MOUNTAIN_SIZES, mountainSrcSet } from '@/lib/mountain-sources';
+import { FooterClouds } from './footer-clouds';
 import { Logo } from './logo';
+import { PausableRegion } from './motion-pause';
 import styles from './site-footer.module.css';
 
 function FooterColumns() {
@@ -29,9 +31,18 @@ function FooterLandscape() {
     <div className={styles.landscape} aria-hidden="true">
       <p className={styles.wordmark}>{site.company}</p>
       <div className={styles.clouds}>
-        <FogBank sprite={smoke} density="dense" />
+        <FooterClouds sprite={smoke} />
       </div>
-      <img className={styles.mountain} src={mountain.src} width={mountain.width} height={mountain.height} alt="" loading="lazy" />
+      <img
+        className={styles.mountain}
+        src={mountain.src}
+        srcSet={mountainSrcSet(mountain)}
+        sizes={MOUNTAIN_SIZES}
+        width={mountain.width}
+        height={mountain.height}
+        alt=""
+        loading="lazy"
+      />
       <div className={styles.fog} />
     </div>
   );
@@ -47,7 +58,9 @@ export function SiteFooter() {
         </div>
         <FooterColumns />
       </div>
-      <FooterLandscape />
+      <PausableRegion className={styles.scenery} buttonClassName={styles.pause}>
+        <FooterLandscape />
+      </PausableRegion>
     </footer>
   );
 }

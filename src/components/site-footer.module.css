@@ -34,16 +34,33 @@
 
 .links {
   display: grid;
-  gap: 12px;
   font-size: var(--text-body);
 }
 
 .links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target);
   transition: color 0.15s ease;
 }
 
 .links a:hover {
   color: var(--slate);
+}
+
+.scenery {
+  position: relative;
+}
+
+.pause {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-2);
+}
+
+.scenery[data-paused] .fog::before,
+.scenery[data-paused] .fog::after {
+  animation-play-state: paused;
 }
 
 .landscape {
@@ -127,5 +144,13 @@
 @media (min-width: 768px) {
   .top {
     grid-template-columns: 1fr 2fr;
+  }
+
+  .links {
+    gap: 12px;
+  }
+
+  .links a {
+    min-height: 0;
   }
 }
