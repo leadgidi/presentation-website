@@ -33,6 +33,9 @@ export type PublishedPlan = { code: string; tagline: string; isFree: boolean; is
 
 export const DISPLAY_CURRENCY = 'usd';
 
+export const DEFAULT_BILLING: CatalogBilling = 'monthly';
+export const DEFAULT_CREDITS = 1000;
+
 export const publishedPlans: PublishedPlan[] = [
   { code: 'free-plan', tagline: 'Try it on your own list.', isFree: true, isHighlighted: false },
   { code: 'starter', tagline: 'Buy credits once or subscribe and save.', isFree: false, isHighlighted: true },

@@ -2,12 +2,10 @@
 
 import { ReactNode, useId, useState } from 'react';
 import { pricingCopy } from '@/content/home';
-import { BillingOption, PricingData } from '@/content/pricing';
+import { BillingOption, DEFAULT_BILLING, DEFAULT_CREDITS, PricingData } from '@/content/pricing';
 import { paidCreditsLine, planOffer } from '@/lib/pricing';
 import { PlanColumn } from './plan-column';
 import styles from './pricing-calculator.module.css';
-
-const DEFAULT_TIER_INDEX = 2;
 
 type BillingSelectorProps = {
   options: BillingOption[];
@@ -58,8 +56,10 @@ function CreditSlider({ tiers, tierIndex, creditsLabel, onChange }: CreditSlider
 }
 
 function useCreditSelection({ billingOptions, creditTiers }: PricingData) {
-  const [billing, setBilling] = useState(billingOptions[0]);
-  const [tierIndex, setTierIndex] = useState(Math.min(DEFAULT_TIER_INDEX, creditTiers.length - 1));
+  const [billing, setBilling] = useState(
+    () => billingOptions.find((option) => option.id === DEFAULT_BILLING) ?? billingOptions[0],
+  );
+  const [tierIndex, setTierIndex] = useState(() => Math.max(creditTiers.indexOf(DEFAULT_CREDITS), 0));
   const credits = creditTiers[tierIndex] * billing.creditMultiplier;
   return { billing, setBilling, tierIndex, setTierIndex, credits, creditsLine: paidCreditsLine(credits, billing) };
 }
