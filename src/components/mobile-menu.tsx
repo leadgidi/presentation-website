@@ -7,7 +7,7 @@ import styles from './mobile-menu.module.css';
 
 const PANEL_ID = 'mobile-menu-panel';
 const DESKTOP_QUERY = '(min-width: 900px)';
-const OUTSIDE_MENU = 'main, body > footer';
+const OUTSIDE_MENU = 'body > :not(header)';
 const MENU_OPEN_ATTRIBUTE = 'data-menu-open';
 
 type ElementRef<T extends HTMLElement> = RefObject<T | null>;

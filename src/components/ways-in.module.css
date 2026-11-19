@@ -308,7 +308,7 @@
   height: 100%;
   background: var(--code-background);
   color: var(--code-ink);
-  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
 }
 

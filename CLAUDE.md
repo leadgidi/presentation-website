@@ -20,6 +20,8 @@ There is no lint or test setup. Do not add one unless asked.
 - `src/content/pricing.ts` - billing labels, the published plans in order (Free, Starter, Business) with their taglines, the display currency, and `UPCOMING_FEATURE_CODES` (catalog entitlements not enforced in code yet, shown as "Coming soon"; remove a code once the feature ships); prices, credit tiers, discounts and currencies come from the backend's public billing catalog
 - `src/lib/catalog.ts` - fetches `${CATALOG_API_URL}/feapi/billing/catalog` at build time; the build fails if the variable is missing or a price is absent, so never hardcode prices. Locally set `CATALOG_API_URL=http://localhost:8082` in `.env.local`; in CI it is the `CATALOG_API_URL` repository variable. Changing prices: run `cm.py` in `backend/stripe-catalog`, then rerun the deploy workflow (or send a `billing-catalog-updated` repository_dispatch)
 - `src/content/showcase.ts` - example people for the hero enrichment showcase
+- `src/content/docs/` - the `/docs/` guides as typed blocks (`paragraph`, `heading`, `list`, `code`, `table`, `note`; inline `` `code` `` and `[label](href)` only), grouped into sections in `index.ts` with the docs UI copy. Every claim follows the same product-claims rule as the homepage
+- `src/lib/openapi.ts` - fetches `${CATALOG_API_URL}/openapi.yml` at build time (parsed with `yaml`) and turns each operation into an API reference page under `/docs/api/<operation-id>/`; the build fails if the document is missing, so the reference never drifts from the backend
 - `src/hooks/` - shared client hooks (`use-in-view`, `use-timeline`, `use-media-query`)
 - `src/lib/` - logic without React: formatting (`format.ts`, the only place with a locale), pricing offers (`pricing.ts`), and `catalog.ts`, which fetches the billing catalog at build time from `CATALOG_API_URL` (set in `.env.local` locally and as a repository variable in the Pages workflow; the build fails without it)
 - `src/app/globals.css` - design tokens, base styles and shared primitives (`.container`, `.section`, `.split`/`.split-reverse`/`.split-wide` layouts, `.frame` hairline box with `.frame-head-centered` and `.rails` `.rails-up`/`.rails-down` connectors, `--hatch-pattern`, `.showcase-panel` large rounded grey panel, `.button` with `-primary`/`-secondary`/`-outline`/`-small` variants and `.button-row`)
@@ -58,6 +60,10 @@ The page's main job is to rank for B2B contact enrichment searches and share wel
 - Images: meaningful `alt`, explicit `width`/`height` to avoid layout shift.
 - Core Web Vitals: no render-blocking scripts, fonts only via `next/font`, client JS kept minimal, no layout shift from animated content (animated rows stay in the layout and only change opacity).
 - `robots.ts` allows everything; never add `noindex` to production pages.
+
+## Docs
+
+`/docs/` works like Linear or Stripe docs: a sticky sidebar (guide sections, then the generated API reference), one article column, an "On this page" list from the `h2` headings at 1240px and up, and previous/next links. Below 960px the sidebar collapses into a `<details>` disclosure, no JS. Pages render through `DocsShell` (`src/components/docs/`), which uses `SiteHeader hasHero={false}` and `SiteFooter hasScenery={false}`. Header and footer anchors use `/#section` so they work from any page. The app's Docs links open `/docs/` in a new tab; it has no in-app documentation route.
 
 ## Components
 

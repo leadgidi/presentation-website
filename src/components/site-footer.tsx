@@ -48,7 +48,7 @@ function FooterLandscape() {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ hasScenery = true }: { hasScenery?: boolean }) {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.top}`}>
@@ -58,9 +58,11 @@ export function SiteFooter() {
         </div>
         <FooterColumns />
       </div>
-      <PausableRegion className={styles.scenery} buttonClassName={styles.pause}>
-        <FooterLandscape />
-      </PausableRegion>
+      {hasScenery && (
+        <PausableRegion className={styles.scenery} buttonClassName={styles.pause}>
+          <FooterLandscape />
+        </PausableRegion>
+      )}
     </footer>
   );
 }

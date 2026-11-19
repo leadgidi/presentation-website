@@ -33,9 +33,9 @@ function listenForScroll(read: () => void): () => void {
   };
 }
 
-function useScrollState() {
+function useScrollState(hasHero: boolean) {
   const [isAtTop, setIsAtTop] = useState(true);
-  const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(true);
+  const [isHeroCtaVisible, setIsHeroCtaVisible] = useState(hasHero);
 
   useEffect(() => {
     const cta = document.querySelector<HTMLElement>(HERO_CTA_SELECTOR);
@@ -51,8 +51,10 @@ function useScrollState() {
   return { isAtTop, isHeroCtaVisible };
 }
 
-export function HeaderShell({ className, children }: { className: string; children: ReactNode }) {
-  const { isAtTop, isHeroCtaVisible } = useScrollState();
+type HeaderShellProps = { className: string; hasHero: boolean; children: ReactNode };
+
+export function HeaderShell({ className, hasHero, children }: HeaderShellProps) {
+  const { isAtTop, isHeroCtaVisible } = useScrollState(hasHero);
 
   return (
     <header className={className} data-at-top={isAtTop || undefined} data-hero-cta-visible={isHeroCtaVisible || undefined}>

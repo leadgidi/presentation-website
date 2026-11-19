@@ -4,9 +4,10 @@ import { Logo } from './logo';
 import { MobileMenu } from './mobile-menu';
 import styles from './site-header.module.css';
 
-export function SiteHeader() {
+// Pages without the hero show the header CTA from the first paint instead of fading it in.
+export function SiteHeader({ hasHero = true }: { hasHero?: boolean }) {
   return (
-    <HeaderShell className={styles.header}>
+    <HeaderShell className={styles.header} hasHero={hasHero}>
       <div className={`container ${styles.bar}`}>
         <a href="/" className={styles.home}>
           <Logo />

@@ -1,0 +1,51 @@
+.index {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.sectionTitle {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.links {
+  display: grid;
+}
+
+@media (min-width: 640px) {
+  .links {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-4);
+  }
+}
+
+.link {
+  display: grid;
+  gap: 2px;
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.linkTitle {
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.link:hover .linkTitle {
+  color: var(--slate);
+}
+
+.linkDescription {
+  font-size: 0.9375rem;
+  color: var(--slate);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkTitle {
+    transition: none;
+  }
+}

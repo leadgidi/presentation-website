@@ -8,7 +8,9 @@ const SIGN_IN_URL = `${APP_URL}/login/`;
 
 export const sectionIds = { product: 'what-you-get', developers: 'ways-in', pricing: 'pricing', faq: 'faq' };
 
-const anchor = (id: string) => `#${id}`;
+// Anchors include the home path so they also work from the docs pages.
+const anchor = (id: string) => `/#${id}`;
+const DOCS_LINK = { label: 'Docs', href: '/docs/' };
 
 export const site = {
   company: 'Leadgidi',
@@ -44,6 +46,7 @@ export const site = {
         { label: 'Developers', href: anchor(sectionIds.developers) },
         { label: 'Pricing', href: anchor(sectionIds.pricing) },
         { label: 'FAQ', href: anchor(sectionIds.faq) },
+        DOCS_LINK,
       ],
     },
     {
@@ -63,5 +66,6 @@ export const site = {
     { label: 'Pricing', href: anchor(sectionIds.pricing) },
     { label: 'Developers', href: anchor(sectionIds.developers) },
     { label: 'FAQ', href: anchor(sectionIds.faq) },
+    DOCS_LINK,
   ],
 };

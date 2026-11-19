@@ -38,6 +38,7 @@
   --code-string: #e6e8eb;
   --code-number: #f0a868;
   --code-success: #7ad19b;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
